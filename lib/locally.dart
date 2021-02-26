@@ -10,7 +10,6 @@
 
 library locally;
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +49,7 @@ class Locally {
   /// initializationSettingIos;
   /// initializationSetting;
   FlutterLocalNotificationsPlugin localNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
   var initializationSettingAndroid;
   var initializationSettingIos;
   var initializationSetting;
@@ -73,7 +72,7 @@ class Locally {
     /// initializationSettingAndroid declared above is assigned
     /// to AndroidInitializationSettings.
     initializationSettingAndroid =
-    new AndroidInitializationSettings(this.appIcon);
+        new AndroidInitializationSettings(this.appIcon);
 
     /// initializationSettingIos declared above is assigned
     /// to IOSInitializationSettings.
@@ -99,12 +98,12 @@ class Locally {
   Future requestPermission() async {
     return await localNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>()
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+          alert: true,
+          badge: true,
+          sound: true,
+        );
   }
 
   /// onSelectNotification
@@ -122,20 +121,21 @@ class Locally {
   /// it takes in id, title, body and payload
   Future<void> onDidReceiveNotification(id, title, body, payload) async {
     await showDialog(
-        context: context,
-        child: CupertinoAlertDialog(
-          title: title,
-          content: Text(body),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text('Ok'),
-              onPressed: () async {
-                await Navigator.push(context, pageRoute);
-              },
-            )
-          ],
-        ));
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: title,
+        content: Text(body),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: Text('Ok'),
+            onPressed: () async {
+              await Navigator.push(context, pageRoute);
+            },
+          )
+        ],
+      ),
+    );
   }
 
   /// The show Method return a notification to the screen
@@ -148,13 +148,13 @@ class Locally {
   /// ticker
   Future show(
       {@required title,
-        @required message,
-        channelName = 'channel Name',
-        channelID = 'channelID',
-        channelDescription = 'channel Description',
-        importance = Importance.High,
-        priority = Priority.High,
-        ticker = 'test ticker'}) async {
+      @required message,
+      channelName = 'channel Name',
+      channelID = 'channelID',
+      channelDescription = 'channel Description',
+      importance = Importance.High,
+      priority = Priority.High,
+      ticker = 'test ticker'}) async {
     if (title == null && message == null) {
       throw "Missing parameters, title: message";
     } else {
@@ -187,15 +187,15 @@ class Locally {
   /// and a Duration class
   Future schedule(
       {@required title,
-        @required message,
-        channelName = 'channel Name',
-        channelID = 'channelID',
-        channelDescription = 'channel Description',
-        importance = Importance.High,
-        priority = Priority.High,
-        ticker = 'test ticker',
-        @required Duration duration,
-        androidAllowWhileIdle = false}) async {
+      @required message,
+      channelName = 'channel Name',
+      channelID = 'channelID',
+      channelDescription = 'channel Description',
+      importance = Importance.High,
+      priority = Priority.High,
+      ticker = 'test ticker',
+      @required Duration duration,
+      androidAllowWhileIdle = false}) async {
     if (title == null && message == null && duration == null) {
       throw "Missing parameters, title: message: duration";
     } else {
@@ -223,14 +223,14 @@ class Locally {
   /// and a repeat interval
   Future showPeriodically(
       {@required title,
-        @required message,
-        channelName = 'channel Name',
-        channelID = 'channelID',
-        channelDescription = 'channel Description',
-        importance = Importance.High,
-        priority = Priority.High,
-        @required var repeatInterval,
-        ticker = 'test ticker'}) async {
+      @required message,
+      channelName = 'channel Name',
+      channelID = 'channelID',
+      channelDescription = 'channel Description',
+      importance = Importance.High,
+      priority = Priority.High,
+      @required var repeatInterval,
+      ticker = 'test ticker'}) async {
     if (title == null && message == null && repeatInterval == null) {
       throw "Missing parameters, title: message, repeat interval";
     } else {
@@ -256,15 +256,15 @@ class Locally {
   /// and a time
   Future showDailyAtTime(
       {@required title,
-        @required message,
-        channelName = 'channel Name',
-        channelID = 'channelID',
-        channelDescription = 'channel Description',
-        importance = Importance.High,
-        priority = Priority.High,
-        ticker = 'test ticker',
-        @required time,
-        bool suffixTime = false}) async {
+      @required message,
+      channelName = 'channel Name',
+      channelID = 'channelID',
+      channelDescription = 'channel Description',
+      importance = Importance.High,
+      priority = Priority.High,
+      ticker = 'test ticker',
+      @required time,
+      bool suffixTime = false}) async {
     if (title == null && message == null) {
       throw "Missing parameters, title: message";
     } else {
@@ -302,16 +302,16 @@ class Locally {
   /// and Day
   Future showWeeklyAtDayAndTime(
       {@required title,
-        @required message,
-        channelName = 'channel Name',
-        channelID = 'channelID',
-        channelDescription = 'channel Description',
-        Importance importance = Importance.High,
-        Priority priority = Priority.High,
-        ticker = 'test ticker',
-        @required time,
-        @required day,
-        bool suffixTime = false}) async {
+      @required message,
+      channelName = 'channel Name',
+      channelID = 'channelID',
+      channelDescription = 'channel Description',
+      Importance importance = Importance.High,
+      Priority priority = Priority.High,
+      ticker = 'test ticker',
+      @required time,
+      @required day,
+      bool suffixTime = false}) async {
     if (title == null && message == null && time == null && day == null) {
       throw "Missing parameters, title: message : time";
     } else {
