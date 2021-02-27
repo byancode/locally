@@ -12,6 +12,7 @@ library locally;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:open_app/open_app.dart';
 
 /// Imports flutter_local_notification, our dependency package
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -33,11 +34,8 @@ class Locally {
   /// App Icon which is required on initialization
   String appIcon;
 
-  /// Page Route which is also required on Initialization
-  MaterialPageRoute pageRoute;
-
-  /// A context is also required
-  BuildContext context;
+  /// A packageName is also required
+  String package;
 
   /// IOS Parameters, this is currently not in use but will be implemented in future releases
   bool iosRequestSoundPermission;
@@ -61,8 +59,7 @@ class Locally {
   /// localNotification settings is initialized with Flutter Local Notification
   /// Setting declared above
   Locally({
-    @required this.context,
-    @required this.pageRoute,
+    @required this.package,
     @required this.appIcon,
     @required this.payload,
     this.iosRequestSoundPermission = false,
@@ -113,30 +110,13 @@ class Locally {
     if (payload != null) {
       debugPrint('notification payload: ' + payload);
     }
-    await Navigator.push(context, pageRoute);
+    await OpenApp.openApp(package);
   }
 
   /// onDidReceiveNotification
   /// it required for IOS initialization
   /// it takes in id, title, body and payload
-  Future<void> onDidReceiveNotification(id, title, body, payload) async {
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: title,
-        content: Text(body),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: Text('Ok'),
-            onPressed: () async {
-              await Navigator.push(context, pageRoute);
-            },
-          )
-        ],
-      ),
-    );
-  }
+  Future<void> onDidReceiveNotification(id, title, body, payload) async {}
 
   /// The show Method return a notification to the screen
   /// it takes in a required title, message

@@ -14,11 +14,9 @@ dependencies:
     sdk: flutter
 
   flutter_local_notifications: ^1.4.1
-dependency_overrides:
-
+  open_app: ^0.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
-

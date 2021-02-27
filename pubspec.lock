@@ -88,6 +88,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+  open_app:
+    dependency: "direct main"
+    description:
+      name: open_app
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   path:
     dependency: transitive
     description:
